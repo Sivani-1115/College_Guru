@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import CourseList from './components/CourseList';
 import './App.css';
 
 function App() {
+  const [courses, setCourses] = useState([
+    {
+      title: 'MCA',
+      fees: '₹1,00,000',
+      examAccepted: 'NIMCET',
+      numCourses: 1,
+      tags: ['MCA'],
+    },
+    {
+      title: 'MA',
+      fees: '₹52,000',
+      numCourses: 1,
+      tags: ['MA in English'],
+    },
+    {
+      title: 'Certificate',
+      fees: '₹1,500 - 5,000',
+      numCourses: 12,
+      tags: [
+        'Certificate in Java Programming',
+        'Certificate in Oracle Database Administration',
+      ],
+    },
+  ]);
+
+  const addCourse = (course) => {
+    setCourses([...courses, course]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Available Course in Our College</h1>
+      {/* The AddCourseForm has been removed */}
+      <CourseList courses={courses} />
     </div>
   );
 }
